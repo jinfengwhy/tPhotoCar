@@ -1,6 +1,8 @@
 import useShare from '@/hooks/useShare';
 
 import { View } from '@tarojs/components'
+import ResImage from '@/components/resImage';
+import ResCar from '@/components/resCar';
 
 import './index.less'
 
@@ -9,7 +11,11 @@ function Index () {
 
   return (
     <View className='pages-result'>
-      识别结果
+      {/* 图片本身 */}
+      <ResImage />
+
+      {/* 车辆信息 */}
+      <ResCar />
     </View>
   )
 }
