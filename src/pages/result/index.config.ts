@@ -1,5 +1,5 @@
 export default definePageConfig({
-  navigationBarTitleText: '拍照识车',
+  navigationBarTitleText: '识别结果',
   enableShareAppMessage: true,
   enableShareTimeline: true
 })

@@ -20,6 +20,9 @@ const Index = memo(() => {
     // @ts-ignore
     dispatch(getTestAction({ imgUrl })).finally(() => {
       setIsIdentifying(false);
+      Taro.navigateTo({
+        url: '/pages/result/index'
+      });
     });
   }, [dispatch, imgUrl])
 
