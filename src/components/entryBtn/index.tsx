@@ -2,8 +2,8 @@ import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Taro from "@tarojs/taro";
 
-import { chooseImage } from "@/utils/img";
-import { getTestAction } from "@/actions/photo";
+import { chooseImage, imageToBase64 } from "@/utils/img";
+import { getScanResultAction } from "@/actions/photo";
 
 import { View, Button } from "@tarojs/components";
 
@@ -11,14 +11,15 @@ import './index.less';
 
 const Index = memo(() => {
   const [imgUrl, setImgUrl] = useState("");
+  const [imgBase64, setImgBase64] = useState("")
   const [isIdentifying, setIsIdentifying] = useState(false);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!imgUrl) return;
+    if (!imgUrl ||!imgBase64) return;
     setIsIdentifying(true);
     // @ts-ignore
-    dispatch(getTestAction({ imgUrl })).finally(() => {
+    dispatch(getScanResultAction({ imgUrl, imgBase64 })).finally(() => {
       setIsIdentifying(false);
       Taro.navigateTo({
         url: '/pages/result/index'
@@ -36,14 +37,15 @@ const Index = memo(() => {
     }
   }, [isIdentifying])
 
-  const handleClick = useCallback(() => {
-    chooseImage().then((res: string) => {
-      console.log('---why chooseImage path: ', res);
-      setImgUrl(res);
-    }).catch(err => {
-      console.error('---why chooseImage error: ', err);
-      setImgUrl("");
-    });
+  const handleClick = useCallback(async () => {
+    try {
+      const imgUrl = await chooseImage() as string;
+      const imgBase64 = await imageToBase64(imgUrl) as string;
+      setImgUrl(imgUrl);
+      setImgBase64(imgBase64);
+    } catch (err) {
+      console.error('---why handleClick error: ', err);
+    }
   }, []);
 
   return (

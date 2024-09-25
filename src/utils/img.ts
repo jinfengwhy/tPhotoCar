@@ -14,11 +14,25 @@ export function chooseImage() {
       },
       fail: function (err) {
         // 处理选择图片失败的情况
-        console.log(err);
+        console.error('选择图片失败：', err);
         reject(err);
       }
     });
   });
 }
 
-
+export function imageToBase64(filePath) {
+  return new Promise((resolve, reject) => {
+    Taro.getFileSystemManager().readFile({
+      filePath,
+      encoding: 'base64',
+      success: function (res) {
+        resolve(res.data);
+      },
+      fail: function (err) {
+        console.error('图片转换base64失败：', err);
+        reject(err);
+      }
+    });
+  });
+}

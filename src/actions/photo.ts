@@ -1,5 +1,5 @@
 import { SCAN } from "@/constants/photo"
-import { getTestData } from "@/services/modules/photo"
+import { getScanResultData } from "@/services/modules/photo"
 
 export const changeTestData = (data) => {
   return {
@@ -8,10 +8,10 @@ export const changeTestData = (data) => {
   }
 }
 
-export const getTestAction = params => {
+export const getScanResultAction = params => {
   return dispatch => {
     return new Promise((resolve, reject) => {
-      getTestData(params).then(res => {
+      getScanResultData(params).then(res => {
         dispatch({ ...changeTestData(res), imgUrl: params.imgUrl });
         resolve(res);
       }).catch(reject);
