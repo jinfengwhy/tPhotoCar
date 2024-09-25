@@ -10,14 +10,17 @@ const Index = memo(() => {
   const res = useSelector(({ photo: { data } }) => ({ data }), shallowEqual);
   const { result = [], brand = '' } = res.data as any || {} ;
 
+  const hasNoData = (res.data === null) || (res?.data?.error_code);
+
   return (
-    <View className={`components-res-car ${(res.data === null) && 'no-data'}`}>
+    <View className={`components-res-car ${hasNoData && 'no-data'}`}>
       {
-        res.data === null
+        hasNoData
           ?
             <View className="no-data__tip">
-              <View style={{ textAlign: 'center' }}>识别失败了</View>
-              <View>拍摄汽车正面识别率更高哟，请重新尝试</View>
+              <View className="tcenter">识别失败了</View>
+              <View className="tcenter">拍摄汽车正面识别率更高哟，请重新尝试</View>
+              <View className="tcenter">{res?.data?.error_code} {res?.data?.error_msg}</View>
             </View>
           :
             <>
