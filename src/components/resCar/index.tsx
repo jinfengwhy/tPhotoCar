@@ -19,7 +19,7 @@ const Index = memo(() => {
           ?
             <View className="no-data__tip">
               <View className="tcenter">识别失败了</View>
-              <View className="tcenter">拍摄汽车正面识别率更高哟，请重新尝试</View>
+              <View className="tcenter">拍摄汽车正面/背面识别率更高哟，请重新尝试</View>
               <View className="tcenter">{res?.data?.error_code} {res?.data?.error_msg}</View>
             </View>
           :

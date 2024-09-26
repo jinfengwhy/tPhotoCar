@@ -15,7 +15,7 @@ const Index = memo(() => {
       </Text>
       <Text className="step">
         <Text className="num">2.</Text>{" "}
-        对准车辆，确保车牌和标识清晰可见，拍摄或上传图片（<Text className="bold">拍摄汽车正面识别率更高哟</Text>）。
+        对准车辆，确保车牌和标识清晰可见，拍摄或上传图片（<Text className="bold">拍摄汽车正面/背面识别率更高哟</Text>）。
       </Text>
       <Text className="step">
         <Text className="num">3.</Text>{" "}
