@@ -1,4 +1,5 @@
 import useShare from '@/hooks/useShare';
+import useAuth from '@/hooks/useAutho';
 
 import { View } from '@tarojs/components'
 import UsageIntro from '@/components/usageIntro';
@@ -8,6 +9,8 @@ import './index.less'
 
 function Index () {
   useShare();
+
+  useAuth();
 
   return (
     <View className='pages-index'>

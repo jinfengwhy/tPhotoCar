@@ -1,8 +1,8 @@
 import request from '../request'
 
-// 获取测试数据
+// 获取扫描结果
 export const getScanResultData = async params => {
-  const token = '24.2700110b4123c87482fbe7e3165ff16f.2592000.1729769623.282335-115686767';
+  const token = params.token;
   const url = `https://aip.baidubce.com/rest/2.0/image-classify/v1/car?access_token=${token}`;
   const res = await request.post(url, {
     baike_num: 1, // 返回百科信息的结果数，默认不返回
