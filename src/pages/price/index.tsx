@@ -1,11 +1,13 @@
 import { memo } from "react";
 import { useSelector } from "react-redux";
+import useShare from '@/hooks/useShare';
 
 import { View, Text } from "@tarojs/components";
 
 import "./index.less";
 
-const Index = memo(() => {
+const Index = () => {
+  useShare()
   // 从 reducer 中获取状态
   // @ts-ignore
   const priceData = useSelector(({ price }) => price.priceData);
@@ -59,6 +61,6 @@ const Index = memo(() => {
       </View>
     </View>
   );
-});
+};
 
 export default Index;
